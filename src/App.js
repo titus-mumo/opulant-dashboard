@@ -5,8 +5,10 @@ import { AllRoutes } from './routes/AllRoutes';
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <AllRoutes />
+      <Header />
+      <main>
+        <AllRoutes />
+      </main>
       <Footer />
     </div>
   );

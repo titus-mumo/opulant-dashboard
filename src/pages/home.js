@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
+import { Card } from '../components'
 
 
 export const Home = () => {
@@ -18,13 +19,10 @@ export const Home = () => {
   useEffect(()=> {getProducts()}, [])
   return (
     <div>{products.map(product => {
-      return <div>
-        <p>{product._id}</p>
-        <p>{product.name}</p>
-        <p>{product.price}</p>
-        <p>{product.quantity}</p>
-        <img src={product.image} alt={product.name} />
-      </div>
+      return (
+        <Card key={ product._id} product={product}/>
+      )
+      
     })}</div>
   )
 }
