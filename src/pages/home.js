@@ -21,9 +21,9 @@ export const Home = () => {
   return (
     <>
      <Link to='/add_product'>
-        <div class="bg-green-700 rounded-lg shadow m-4 dark:bg-gray-800 hover:cursor-pointer" >
-          <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-center">
-        <span class="text-lg text-white text-center dark:text-gray-400">Add a product
+        <div className="bg-green-700 rounded-lg shadow m-4 dark:bg-gray-800 hover:cursor-pointer" >
+          <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-center">
+        <span className="text-lg text-white text-center dark:text-gray-400">Add a product
           </span>  
         </div>
         </div>
