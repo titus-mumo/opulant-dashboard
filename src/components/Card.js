@@ -1,16 +1,21 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import toast, { Toaster } from 'react-hot-toast'
 
 export const Card = ({ product }) => {
+
+    const success = (id) => toast.success(`${id} deleted successfully`)
+    const fail = () => toast.error('An error occured in the process')
     
     const deleteProduct = async(id) => {
         try {
+            alert(`Are you sure you want to delete this item?`)
             const response = await axios.delete(`https://node-api-kqht.onrender.com/api/products/${id}`)
-            alert(`${response.data.name} has been deleted successfully`)
             window.location.reload()
+            success(response.data.name)
         } catch (error) {
-            console.log(`The error is ${error.message}`)
+            fail()
         }
     }
 
@@ -18,7 +23,8 @@ export const Card = ({ product }) => {
 
   return (
       
-<div className="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-3">
+      <div className="max-w-sm bg-gray-150 border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 m-3">
+          <Toaster />
     <div className='flex justify-center align-middle'>
         <a href="/">
             <img className="rounded-t-lg h-40 w-30" src={product.image} alt=""/>

@@ -7,7 +7,7 @@ export const Footer = () => {
     <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
       <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <Link to="/" className="hover:underline">OpulantDashboard™</Link>. All Rights Reserved.
               </span>
-              <p className="mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0"> Buy me coffee </p>
+              <p className="mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0 hover:cursor-pointer hover:underline"> Buy me coffee </p>
     <ul className="flex flex-wrap items-center justify-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
         <li>
             <a href="https://github.com/titus-mumo" className="mr-4 hover:underline md:mr-6 ">Github</a>
@@ -19,8 +19,11 @@ export const Footer = () => {
             <a href="https://twitter.com/TitusKennedy9" className="mr-4 hover:underline md:mr-6">Twitter</a>
         </li>
         <li>
-            <a href="https://www.instagram.com/_tito_ken/" className="hover:underline">Instagram</a>
-        </li>
+            <a href="https://www.instagram.com/_tito_ken/" className="mr-4 hover:underline md:mr-6">Instagram</a>
+          </li>
+          <li>
+            <a href="" className="mr-4 hover:underline md:mr-6">Spotify</a>
+          </li>    
     </ul>
     </div>
 </footer>
