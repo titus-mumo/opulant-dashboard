@@ -31,10 +31,12 @@ export const Card = ({ product }) => {
         </a>
     </div>
 
-    <div className="p-5">
-        <a href="/">
-                  <h5 className="mb-2 text-xl tracking-tight text-gray-900 dark:text-white leading-normal">{ product.name}</h5>
-        </a>
+          <div className="p-5">
+              <div className='max-w-30 flex flex-wrap m-0 p-0 justify-center'>
+                <a href="/">
+                  <h5 className="mb-2 text-xl tracking-tight text-gray-900 dark:text-white leading-normal w-30 max-w-100%">{ product.name}</h5>
+                </a>
+            </div>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Quantity: {product.quantity}</p>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Price: { format.format(product.price)}</p>
               <div className='flex justify-around'>

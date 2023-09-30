@@ -29,7 +29,7 @@ export const AddProduct = () => {
 
 
   return (
-      <div className='flex justify-center items-center '>
+      <main className='flex justify-center items-center '>
           <Toaster />
 <form className='max-w-md basis-11/12 dark:bg-gray-600 p-5 rounded-xl' onSubmit={addItem}>
   <div className="mb-6">
@@ -58,6 +58,6 @@ export const AddProduct = () => {
                   </Link>
   </div>
           </form>
-</div>
+</main>
   )
 }

@@ -55,7 +55,7 @@ export const Analytics = () => {
   
 
   return (
-    <div className='flex flex-wrap w-full justify-around h-full bg-white'>
+    <main className='flex flex-wrap w-full justify-around h-full bg-white'>
       <Toaster />
       <div>
         {
@@ -74,6 +74,6 @@ export const Analytics = () => {
           )
         }
       </div>
-      </div>
+      </main>
   )
 }

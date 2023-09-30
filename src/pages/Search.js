@@ -1,7 +1,8 @@
 import React from 'react'
 
-export const Search = () => {
+export const Search = (event) => {
+  event.preventDefault()
   return (
-    <div>Search</div>
+    <main>Search</main>
   )
 }

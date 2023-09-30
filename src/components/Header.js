@@ -9,7 +9,6 @@ export const Header = () => {
   const [search, setSearch] = useState("")
   const [products, setProducts] = useState([])
   const [dropdown, setDropdown] = useState([])
-  const [queryTerm, setQueryTerm] = useState('')
 
   const navigate = useNavigate();
 
@@ -26,10 +25,10 @@ export const Header = () => {
     
   }, [darkMode]);
   
-  const handleSubmit = (event) => {
+  const handleSearch = (event) => {
     event.preventDefault()
-    setQueryTerm(search)
-    return navigate(`/search?q=${queryTerm}`)
+    console.log(search)
+    return navigate(`/search?q=${search}`)
   }
 
   const handleHide = () => {
@@ -47,8 +46,8 @@ export const Header = () => {
   }, [search, products])
 
   return (    
-<nav className="bg-white border-gray-200 dark:bg-gray-900 rounded-sm">
-  <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+<nav className="bg-white border-gray-200 dark:bg-gray-900 rounded-sm flex">
+  <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 basis-11/12">
   <Link to="/" className="flex items-center">
       <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Opulant DashBoard</span>
         </Link>
@@ -70,7 +69,7 @@ export const Header = () => {
         </svg>
         <span className="sr-only">Search icon</span>
             </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={() => handleSearch}>
         <input type="text" id="search-navbar" value={search} onChange={(e) => setSearch(e.target.value)} className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..."/>
       </form>    
     </div>
@@ -89,7 +88,7 @@ export const Header = () => {
             <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
           </svg>
             </div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={() => handleSearch}>
               <input type="text" id="search-navbar" value={search} onChange={(e) => setSearch(e.target.value)} className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..."/>
             </form>
       </div>
@@ -101,8 +100,11 @@ export const Header = () => {
           <Link to="/analytics" className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Analytics</Link>
         </li>
       </ul>
-    </div>
-      </div>
+        </div>
+        </div>
+        <div class="flex items-center">
+            <Link to="/login" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline mr-7">Login</Link>
+        </div>
       <hr className='bg-gray-100'></hr>
 </nav>
 
