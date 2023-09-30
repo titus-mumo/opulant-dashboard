@@ -102,8 +102,8 @@ export const Header = () => {
       </ul>
         </div>
         </div>
-        <div class="flex items-center">
-            <Link to="/login" class="text-sm  text-blue-600 dark:text-blue-500 hover:underline mr-7">Login</Link>
+        <div className="flex items-center">
+            <Link to="/login" className="text-sm  text-blue-600 dark:text-blue-500 hover:underline mr-7">Login</Link>
         </div>
       <hr className='bg-gray-100'></hr>
 </nav>
