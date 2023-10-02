@@ -8,36 +8,31 @@ export const Signup = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
-    const [users, setUsers] = useState([])
-    const [emailExists, setEmailExists] = useState(false)
 
     const navigate = useNavigate()
 
     const fail = () => toast.error("An error occured")
     const success = () => toast.success("Signed up successfully")
     const passwordnotmatching = () => toast.error("Passwords do not match")
-    const emailexists = () => toast.error("Email exists")
+    const invalid = () => toast.error("invalid credential")
 
     
     const handleSignup = async(event) => {
         event.preventDefault()
         if (password === confirmPassword) {
-            const response = await axios.get('https://node-api-kqht.onrender.com/api/users/')
-            setUsers(response.data)
-            setEmailExists(users.filter(user => user.email === email))
-            if (!emailExists) {
-                await axios.post('https://node-api-kqht.onrender.com/api/users/', { email: email, password: password })
-                try {
+            try {
+                const res= await axios.post('https://node-api-kqht.onrender.com/api/users/', { email: email, password: password })
+                if(res && res.status === 400){
+                    invalid()
+                } else if (res &&  res.status === 200) {
                     success();
                     setTimeout(() => {
                         navigate('/login');
-                    }, 2000);
-                } catch (error) {
-                    fail();
-                }
-            } else {
-                emailexists()
-                setEmailExists(false)
+                    }, 2000);}
+            } catch (error) {
+                const message = String(error.response.data.message)
+                const handle = () => toast.error(message)
+                handle() 
             }
         } else{
             passwordnotmatching()

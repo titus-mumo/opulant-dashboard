@@ -52,23 +52,31 @@ export const Analytics = () => {
       hoverOffset: 4
     }]
   }
+
+  const chartOptions = {
+    plugins: {
+      legend: {
+        display: false, // Hide the legend (labels)
+      },
+    },
+  };
   
 
   return (
-    <main className='flex flex-wrap w-full justify-around h-full bg-white'>
+    <main className=' bg-white'>
       <Toaster />
-      <div>
+      <div className='h-full w-full'>
         {
           dataFetched ? (
-            <div className='flex flex-wrap justify-around'>
-            <div className='border-gray-500 border-2 rounded-xl shadow-xl shadow-gray-500/50 m-2 p-3 basis-1/2  dark:bg-gray-800 dark:text-white max-w-xl sm:min-w-sm sm:max-w-md'>
-              <h1 className='text-lg font-bold text-black dark:text-white  dark:bg-gray-800'>Product's Quantity Pie Chart</h1>
-              <Doughnut data={quantityData} className='dark:bg-gray-800 dark:text-white flex flex-wrap'/>
-            </div>
-            <div className=' border-gray-500 border-2 rounded-xl shadow-xl shadow-gray-500/50 m-2 p-3 basis-1/2 dark:bg-gray-800 dark:text-white'>
-              <h1 className='text-lg font-bold text-black dark:text-white dark:bg-gray-800'>Product's Price Bar Graph</h1>
-              <Bar data={priceData} className='dark:bg-gray-800 dark:text-white flex flex-wrap'/>
+            <div className='flex flex-wrap justify-around align-middle w-full h-full'>
+              <div className='border-gray-500 border-2 rounded-xl shadow-xl shadow-gray-500/50 m-3 p-4 basis-1/2  dark:bg-gray-800 dark:text-white max-w-xl sm:min-w-sm sm:max-w-md'>
+                <h1 className='text-lg font-bold text-black dark:text-white  dark:bg-gray-800'>Product's Quantity Pie Chart</h1>
+                <Doughnut data={quantityData} options={chartOptions} className='dark:bg-gray-800 dark:text-white flex flex-wrap'/>
               </div>
+              <div className=' border-gray-500 border-2 rounded-xl shadow-xl shadow-gray-500/50 m-3 p-4 basis-1/2 dark:bg-gray-800 dark:text-white'>
+                <h1 className='text-lg font-bold text-black dark:text-white dark:bg-gray-800'>Product's Price Bar Graph</h1>
+                <Bar data={priceData} options = {chartOptions} className='dark:bg-gray-800 dark:text-white flex flex-wrap'/>
+                </div>
               </div>) : (
             ''
           )

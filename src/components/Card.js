@@ -2,24 +2,42 @@ import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import toast, { Toaster } from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+import useAppContext from '../context/userContext'
 
 export const Card = ({ product }) => {
 
     const success = (id) => toast.success(`${id} deleted successfully`)
     const fail = () => toast.error('An error occured in the process')
+    const navigate = useNavigate()
+    const {user} = useAppContext()
+    const notauthorised = () => toast.error('not authorised')
     
     const deleteProduct = async(id) => {
-        try {
-            alert(`Are you sure you want to delete this item?`)
-            const response = await axios.delete(`https://node-api-kqht.onrender.com/api/products/${id}`)
-            window.location.reload()
-            success(response.data.name)
-        } catch (error) {
-            fail()
+        if(user){
+            try {
+                alert(`Are you sure you want to delete this item?`)
+                const response = await axios.delete(`https://node-api-kqht.onrender.com/api/products/${product._id}`)
+                window.location.reload()
+                success(response.data.name)
+            } catch (error) {
+                fail()
+            }
+        }else{
+            notauthorised()
         }
     }
-
     const format = Intl.NumberFormat('en-US')
+
+    const handleEdit = (event) => {
+        event.preventDefault()
+        if(user){
+            setTimeout(() => {navigate(`/edit_product/${product._id}`)}, 1000)
+        }else{
+            notauthorised()
+            setTimeout(() => {navigate('/login')},1000)
+        }
+    }
 
   return (
       
@@ -40,12 +58,12 @@ export const Card = ({ product }) => {
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Quantity: {product.quantity}</p>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">Price: { format.format(product.price)}</p>
               <div className='flex justify-around'>
-            <Link to={`/edit_product/${product._id}`}>
+            <Link onClick={handleEdit}>
             <span className="inline-flex items-center justify-center m-3 px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 hover:cursor-pointer basis-1/2">
             Edit
                 </span>
                 </Link>
-                      <span  onClick={() => deleteProduct(product._id)} className="inline-flex items-center justify-center m-3 px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 hover:cursor-pointer basis-1/2">
+                      <span  onClick={() => deleteProduct()} className="inline-flex items-center justify-center m-3 px-3 py-2 text-sm font-medium text-center text-white bg-red-700 rounded-lg hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 hover:cursor-pointer basis-1/2">
             Delete
                   </span>
             </div>

@@ -3,12 +3,19 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+import useAppContext from '../context/userContext'
+import { useCookies } from 'react-cookie'
+import toast, {Toaster} from 'react-hot-toast'
 
 export const Header = () => {
   const [hidden, setHidden] = useState(true);
   const [search, setSearch] = useState("")
   const [products, setProducts] = useState([])
   const [dropdown, setDropdown] = useState([])
+  const {user, setUser} = useAppContext()
+  const [, , removeCookie] = useCookies(["user"])
+
+  const logoutSuccess = () => toast.success("Log out successful")
 
   const navigate = useNavigate();
 
@@ -45,8 +52,16 @@ export const Header = () => {
     fetchData()
   }, [search, products])
 
+  const handleLogout = () => {
+    removeCookie("user");
+    setUser(null)
+    logoutSuccess()
+    navigate('/')
+  }
+
   return (    
 <nav className="bg-white border-gray-200 dark:bg-gray-900 rounded-sm flex">
+  <Toaster />
   <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 basis-11/12">
   <Link to="/" className="flex items-center">
       <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Opulant DashBoard</span>
@@ -103,8 +118,13 @@ export const Header = () => {
         </div>
         </div>
         <div className="flex items-center">
-            <Link to="/login" className="text-sm  text-blue-600 dark:text-blue-500 hover:underline mr-7">Login</Link>
-        </div>
+          {
+            user? 
+          
+            <span onClick ={handleLogout} className="hover:cursor-pointer text-sm  text-blue-600 dark:text-blue-500 hover:underline mr-7">Log out</span>:
+            <Link to="/login" className="hover:cursor-pointer text-sm  text-blue-600 dark:text-blue-500 hover:underline mr-7">Login</Link>
+          }
+          </div>
       <hr className='bg-gray-100'></hr>
 </nav>
 

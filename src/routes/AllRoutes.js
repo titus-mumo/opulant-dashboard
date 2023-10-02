@@ -6,10 +6,12 @@ import { Edit } from "../pages/Edit";
 import { Search } from "../pages/Search";
 import { Login } from "../pages/Login";
 import { Signup } from "../pages/Signup";
+//import useAppContext from "../context/userContext";
 
 import React from 'react'
 
 export const AllRoutes = () => {
+  //const {user} = useAppContext()
   return (
       <Routes>
         <Route path='/' element={<Home />} />

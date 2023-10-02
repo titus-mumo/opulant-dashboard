@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import { BrowserRouter as Router } from 'react-router-dom';
 import ScrollToTop from './components/ScrollToTop';
+import { CookiesProvider } from 'react-cookie';
+import { AppContextWrapper } from './context/userContext';
 
 
 
@@ -11,10 +13,14 @@ import ScrollToTop from './components/ScrollToTop';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Router>
-        <ScrollToTop />
-        <App />
-    </Router>
+    <AppContextWrapper>
+      <CookiesProvider>
+        <Router>
+          <ScrollToTop />
+          <App />
+        </Router>
+      </CookiesProvider>
+    </AppContextWrapper>
   </React.StrictMode>
 );
 
